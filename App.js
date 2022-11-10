@@ -77,9 +77,9 @@ const App =  () => {
         <Header />
         <TextInput label="Email" placeholder="Escriu el teu email"/>  
         <Button icon="home" mode="contained" onPress={() => alert('Pressed')}> 
-        Home 
+         Home      
         </Button> 
-
+           // force un commit 
         <View
           style={{
             backgroundColor: isDarkMode ? Colors.black : Colors.white,
