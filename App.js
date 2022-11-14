@@ -12,7 +12,6 @@ import {
   ScrollView,
   StatusBar,
   StyleSheet,
-  Text,
   useColorScheme,
   View,
 } from 'react-native';
@@ -25,38 +24,20 @@ import {
   ReloadInstructions,
 } from 'react-native/Libraries/NewAppScreen';
 
-import { TextInput } from 'react-native-paper';
+import { Provider as PaperProvider,TextInput, Text, Button } from 'react-native-paper';
 
-import { Button } from 'react-native-paper';
-
-
-/* $FlowFixMe[missing-local-annot] The type annotation(s) required by Flow's
- * LTI update could not be added via codemod */
-const Section = ({children, title})  => {
-  const isDarkMode = useColorScheme() === 'dark';
+const saluda2 = () => {
   return (
-    <View style={styles.sectionContainer}>
-      <Text
-        style={[
-          styles.sectionTitle,
-          {
-            color: isDarkMode ? Colors.white : Colors.black,
-          },
-        ]}>
-        {title}
-      </Text>
-      <Text
-        style={[
-          styles.sectionDescription,
-          {
-            color: isDarkMode ? Colors.light : Colors.dark,
-          },
-        ]}>
-        {children}
-      </Text>
-    </View>
-  );
-};
+  <View>
+    {saluda("Ivan López")}
+    {saluda("Paco")}
+  </View> 
+  ); 
+}
+
+const saluda = (textAMostrar) => {
+  return <Text style={{color:"blue", fontSize: 25 }}>Hola {textAMostrar}</Text>; 
+} 
 
 const App =  () => {   
   const isDarkMode = useColorScheme() === 'dark';
@@ -65,42 +46,13 @@ const App =  () => {
     backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
   };
 
+  const isMarvel = true; 
+
   return (
-    <SafeAreaView style={backgroundStyle}>
-      <StatusBar
-        barStyle={isDarkMode ? 'light-content' : 'dark-content'}
-        backgroundColor={backgroundStyle.backgroundColor}
-      />
-      <ScrollView
-        contentInsetAdjustmentBehavior="automatic"
-        style={backgroundStyle}>
-        <Header />
-        <TextInput label="Email" placeholder="Escriu el teu email"/>  
-        <Button icon="home" mode="contained" onPress={() => alert('Pressed')}> 
-         Home      
-        </Button> 
-           // force un commit 
-        <View
-          style={{
-            backgroundColor: isDarkMode ? Colors.black : Colors.white,
-          }}>
-          <Section title="Primer Pas">
-            Edit <Text style={styles.highlight}>App.js</Text> to change this
-            screen and then come back to see your edits.
-          </Section>
-          <Section title="Mira els teus canvis"> 
-            <ReloadInstructions />
-          </Section>
-          <Section title="Debug">
-            <DebugInstructions />
-          </Section>
-          <Section title="Per Saber mes...."> 
-            Read the docs to discover what to do next:
-          </Section>
-          <LearnMoreLinks />
-        </View>
-      </ScrollView>
-    </SafeAreaView>
+    <PaperProvider>
+      {isMarvel && saluda("Spider Man") } 
+      {saluda2()}   
+    </PaperProvider> 
   );
 };
 
